@@ -1,55 +1,52 @@
 ---
 layout: default
-title: usage
-parent: commands
+title: Usage
+parent: Commands
 grand_parent: Cinch
 nav_order: 1
 ---
-All cinch commands follow the [docopt](http://docopt.org/){:target="_default"} standard. They all require
-that the first argument is `project_name` argument, excluding `help` and `list`. In addition, there are a set of
-global options.
 
-{: .note}
-Remember that arguments are different than options. As such, the first argument can occur after
-options: `cinch create --working-dir=/home/andrew project_name`
+# Usage
+{: .no_toc }
 
-```php
-/**
- * @throws Exception
- */
-protected function execute(InputInterface $input, OutputInterface $output): int
-{
-    $projectName = $input->getArgument('project');
-    $target = $input->getArgument('target');
-    $history = $input->getOption('history') ?: $target;
-    $targetName = $input->getOption('target-name') ?? $projectName;
+## Table of contents
+{: .no_toc .text-delta }
 
-    $changelog = new Uri($input->getOption('changelog'));
-    if (!$changelog->getScheme())
-        $changelog = $changelog->withScheme('file'); // fs changelog is just a path
-
-    $project = new Project(
-        new ProjectName($projectName),
-        new TargetUri($targetName, $target),
-        new Uri($history),
-        $changelog
-    );
-
-    $this->logger->info("creating project");
-    $this->createProject->execute($project);
-
-    /* move temp log to project log dir, now that project dir exists */
-    (new Filesystem())->rename($this->tempLogFile, "$this->projectDir/log/" . basename($this->tempLogFile));
-
-    return self::SUCCESS;
-}
-```
-
-# Global Options
-
-* `--target-name` This overrides project file's `defaultTarget`
-* `--working-dir`
-
+1. TOC
+{:toc}
 ----
 
-[Symfony Console]: https://symfony.com/doc/current/components/console.html
+The cinch CLI follows the [docopt](http://docopt.org/){:target="_default"} standard. Arguments and options
+are used to pass configuration and data to cinch.
+
+## Arguments
+
+Arguments are the strings - separated by spaces - that come after the command name itself. They are
+ordered, and can be optional or required. They cannot begin with a `-`.
+
+### Required Arguments
+
+The cinch CLI requires two arguments for every command, except `help` and `list`. The first argument must always
+be `command` and the second `project`.
+
+```bash
+# cinch <command> <project>
+cinch commit sales
+```
+
+## Options
+
+Options are not ordered and are always optional. Every option comes in two flavors: short and long. Short options
+begin with a `-` followed by a single character. Long options begin with `--`. Options can have an optional
+or required value, separated by a space or `=`.
+
+### Global Options
+
+Cinch contains a set of options that can be used with any command. 
+
+| option               | description                                                                                                                                                                             |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -t, –target=NAME     | The target that should be used when executing the command. The default uses the value of `defaultTarget` from the project file.                                                         |
+| -w, –working-dir=DIR | The working directory to use when executing the command. Cinch searches for the [project](#required-arguments) directory within this DIR. The default is the current working directory. |
+| -z, –time-zone=TZ    | Sets the time zone for logging and display. The default is the current system time zone. This option has no effect on the target database.                                              |
+{: .col1-nowrap }

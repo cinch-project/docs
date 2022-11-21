@@ -6,6 +6,16 @@ markdown: kramdown
 highlighter: none # disable, using highlight.js
 url: https://www.cinchsoft.io
 
+# footer
+back_to_top: true
+back_to_top_text: "Back to top"
+
+# header
+heading_anchors: true
+aux_links:
+    '<img src="/assets/images/github.png">':
+        - "https://github.com/cinchsoft/cinch"
+
 callouts_level: quiet # or loud
 callouts:
     highlight:
@@ -22,6 +32,5 @@ callouts:
     warning:
         title: Warning
         color: red
-
 #aux_links:
 #  Template Repository: https://github.com/just-the-docs/just-the-docs-template

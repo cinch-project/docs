@@ -1,56 +1,11 @@
 ---
-layout: default
+layout: home
 title: Cinch
 nav_order: 2
 has_children: true
 ---
+# Cinch
 
-# cinch
-
-Cinch is a database change management system written in PHP. Due to frustration with existing tools, 
-designed for PHP or not, this project began.
-
-# primary goals
-
-* Support for SQL and PHP change scripts
-* Easy to configure or integrate into PHP applications: a cinch
-* 100% framework-agnostic
-* Store history in a database other than the target
-* Ability to source changes directly from version control
-* Lifecycle hooks during a deployment: commit or revert
-* CI/CD pipeline friendly
-* Team-oriented change management strategies
-
-# license
-Cinch is released under the BSD-3-Clause license.
-```nolang
-BSD 3-Clause License
-
-Copyright (c) 2022, CinchSoft
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-1. Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
-
-2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
-
-3. Neither the name of the copyright holder nor the names of its
-   contributors may be used to endorse or promote products derived from
-   this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-```
+Cinch is a database change management system written in PHP, designed to be extendable, configurable and 
+powerful, while maintaining simplicity. It's a cinch!
+{: .fs-6 .fw-300 }
