@@ -44,9 +44,9 @@ or required value, separated by a space or `=`.
 
 Cinch contains a set of options that can be used with any command. 
 
-| option               | description                                                                                                                                                                             |
-|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| -t, –target=NAME     | The target that should be used when executing the command. The default uses the value of `defaultTarget` from the project file.                                                         |
-| -w, –working-dir=DIR | The working directory to use when executing the command. Cinch searches for the [project](#required-arguments) directory within this DIR. The default is the current working directory. |
-| -z, –time-zone=TZ    | Sets the time zone for logging and display. The default is the current system time zone. This option has no effect on the target database.                                              |
+| option                | description                                                                                                                                                                             |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -e, –environment=NAME | The environment to use when executing the command. The default is `environments.default` from the project file.                                                                         |
+| -w, –working-dir=DIR  | The working directory to use when executing the command. Cinch searches for the [project](#required-arguments) directory within this DIR. The default is the current working directory. |
+| -z, –time-zone=TZ     | Sets the time zone for logging and display. The default is the current **system** time zone (not PHP). This option has no effect on the target database.                                |
 {: .col1-nowrap }

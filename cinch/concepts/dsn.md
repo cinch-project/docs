@@ -27,9 +27,9 @@ The URI format was chosen to represent a DSN for several reasons:
 2. simplicity - all values can be represented in a single string
 3. large library support - internally cinch uses `GuzzleHttp\Psr7\Uri`
 
-## DSN Parameters
-All DSNs support parameters, which are encoded within the URI query. The below table lists parameters available
-to all data sources. These are all optional.
+## DSN Options
+All DSNs support options, which are encoded as URI query parameters. The below table lists the available
+options for all data sources. 
 
 | name            | default | description                                |
 |-----------------|---------|--------------------------------------------|
@@ -39,6 +39,8 @@ to all data sources. These are all optional.
 | sslcert         | empty   | path to client certificate                 |
 | sslkey          | empty   | path to private key for client certificate |
 
+{: .note }
+These options are ignored when used with a Filesystem DSN.
 
 ## Filesystem DSN
 A filesystem DSN uses a `file` scheme. Where ever a filesystem URI is expected, an absolute or relative pathname
@@ -66,14 +68,14 @@ mysql://user:password@host:port/dbname?charset=name
 
 ### Defaults
 
-| value    | default                                                     |
-|----------|-------------------------------------------------------------|
-| user     | root - supply password without user `mysql://:password@...` |
-| password | empty, there is no default                                  |
-| host     | 127.0.0.1 - must omit authority `mysql:dbname`              |
-| port     | 3306                                                        |
-| dbname   | this is a required value, no default                        |
-| charset  | utf8mb4                                                     |
+| value    | default                            |
+|----------|------------------------------------|
+| user     | root - ex: `mysql://:password@...` |
+| password | empty                              |
+| host     | 127.0.0.1 - ex: `mysql:dbname`     |
+| port     | 3306                               |
+| dbname   | required value, no default         |
+| charset  | utf8mb4                            |
 
 ## PostgreSQL DSN
 The PostgreSQL DSN uses a `pgsql` scheme. The format is identical to [mysql](#mysql-dsn).
@@ -85,16 +87,16 @@ pgsql://user:password@host:port/dbname?charset=name&sslmode=mode&search_path=a,b
 
 ### Defaults
 
-| value       | default                                                                                                                                                                     |
-|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| user        | postgres - supply password without user `pgsql://:password@...`                                                                                                             |
-| password    | empty, there is no default                                                                                                                                                  |
-| host        | 127.0.0.1 - must omit authority `pgsql:dbname`                                                                                                                              |
-| port        | 5432                                                                                                                                                                        |
-| dbname      | this is a required value, no default                                                                                                                                        |
-| charset     | UTF8                                                                                                                                                                        |
-| sslmode     | `verify-full` if other ssl parameters were provided, otherwise `prefer`: see [PostgreSQL Parameter Key Words][sslmode]{:target="_blank"} for a list of all possible values. |
-| search_path | set by postgres                                                                                                                                                             |
+| value       | default                                                                                                                                                             |
+|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| user        | postgres - ex: `pgsql://:password@...`                                                                                                                              |
+| password    | empty                                                                                                                                                               |
+| host        | 127.0.0.1 - ex: `pgsql:dbname`                                                                                                                                      |
+| port        | 5432                                                                                                                                                                |
+| dbname      | required value, no default                                                                                                                                          |
+| charset     | UTF8                                                                                                                                                                |
+| sslmode     | `verify-full` if other ssl options provided, otherwise `prefer`: see [PostgreSQL Parameter Key Words][sslmode]{:target="_blank"} for a list of all possible values. |
+| search_path | set by postgres                                                                                                                                                     |
 
 ## GitHub DSN
 The GitHub DSN uses a `github` scheme. This is for use with the cinch Changelog. You must use a 
@@ -115,8 +117,8 @@ github:owner/repo/changelog_dir?branch=branch&token=token
 * `repo` is the name of the GitHub repository <small>[required]</small>
 * `changelog_dir` is the path from the root of `repo` to the changelog directory. If omitted, cinch uses 
 the root of `repo` as the changelog directory.
-* `branch` parameter is the branch to use within `repo` <small>[required]</small> 
-* `token` parameter is the personal access token. If omitted, the `CINCH_GITHUB_TOKEN` environment variable must be set.
+* `branch` option is the branch to use within `repo` <small>[required]</small> 
+* `token` option is the personal access token. If omitted, the `CINCH_GITHUB_TOKEN` environment variable must be set.
 
 ## GitLab DSN
 The GitLab DSN uses a `gitlab` scheme. This is for use with the cinch Changelog. You must use a
@@ -140,17 +142,17 @@ gitlab://host:port/project_id/changelog_dir?branch=branch&token=token
 * `project_id` is the GitLab project identifier, which can be found at the top of the project's main page <small>[required]</small>
 * `changelog_dir` is the path from the root of project to the changelog directory. If omitted, cinch uses
   the root of project as the changelog directory.
-* `branch` parameter is the branch to use within project <small>[required]</small>
-* `token` parameter is the personal, group, or project access token. If omitted, the `CINCH_GITLAB_TOKEN` environment variable must be set.
+* `branch` option is the branch to use within project <small>[required]</small>
+* `token` option is the personal, group, or project access token. If omitted, the `CINCH_GITLAB_TOKEN` environment variable must be set.
 
 
 ## Azure DevOps DSN
 
-{: .warning }
-Supports Azure DevOps Services (cloud), not Azure DevOps Server (on-premise).
-
 The Azure DevOps DSN uses a `azure` scheme. This is for use with the cinch Changelog. You must use a
 [personal access token][azure-pac]{:target="_blank"} with at least `code read` access.
+
+{: .warning }
+Supports Azure DevOps Services (cloud), not Azure DevOps Server (on-premise).
 
 Optionally, you can enable `code write` access. {{ page.git_write_benefits }}.
 
@@ -165,8 +167,8 @@ azure:organization/project/repo/changelog_dir?branch=branch&token=token
 * `repo` is the name of the Azure repository <small>[required]</small>
 * `changelog_dir` is the path from the root of `repo` to the changelog directory. If omitted, cinch uses
   the root of `repo` as the changelog directory.
-* `branch` parameter is the branch to use within `repo` <small>[required]</small>
-* `token` parameter is the personal access token. If omitted, the `CINCH_AZURE_TOKEN` environment variable must be set.
+* `branch` option is the branch to use within `repo` <small>[required]</small>
+* `token` option is the personal access token. If omitted, the `CINCH_AZURE_TOKEN` environment variable must be set.
 
 [github-pac]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 [gitlab-pac]: https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html

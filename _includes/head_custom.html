@@ -12,21 +12,21 @@
 <script>hljs.initHighlightingOnLoad();</script>
 
 <style>
+    body {
+        font-size: 16px;
+        font-family: Comfortaa, sans-serif;
+    }
+
     .site-footer {
         display: none;
     }
 
-    body {
-        font-family: Comfortaa, sans-serif;
+    code, td, th, div.footnotes, p.warning, p.important, p.note, p.new, p.highlight {
+        font-size: .875em;
     }
 
-    div.footnotes, p.warning, p.important, p.note, p.new, p.highlight {
-        font-size: 14px;
-    }
-
-    table th, table td {
+    th, td {
         text-align: left;
-        vertical-align: top;
     }
 
     a:not([class]) {
@@ -38,11 +38,18 @@
     }
 
     h3 {
-        font-size: 20px !important;
+        font-size: 22px !important;
+    }
+
+    h4 {
+        font-size: 18px !important;
+        font-weight: 500;
+        text-transform: none;
+        letter-spacing: normal;
     }
 
     .hljs-comment {
-        color: #9f9b9b;
+        color: #9f9b9b; /* default too dark, can't read it */
     }
 
     .col1-nowrap tr > td:first-child {
