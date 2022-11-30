@@ -16,8 +16,8 @@ nav_order: 2
 {:toc}
 ----
 
-The `create` command creates a new project. This includes creating the project configuration, changelog and 
-history schema. A project is required before being able to manage a database target.
+The `create` command creates a new project. This includes creating the project configuration, migration store and 
+history. A project is required before being able to manage a database target.
 
 ## Usage
 ```bash

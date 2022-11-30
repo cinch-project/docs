@@ -24,9 +24,9 @@ Concepts/
   * Deployments
   * Changes
   * Schema Version
-* Changelog
+* MigrationStore
   * Directory
-  * Entry
+  * Migration
     * Script
     * Location
     * Commit Policies

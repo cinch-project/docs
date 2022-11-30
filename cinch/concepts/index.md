@@ -8,8 +8,8 @@ has_children: true
 
 # Project
 
-A project is an organizational unit for your database changes: containing configuration, change scripts,
-hooks scripts, change history, and logs. There can be many projects managed by a single cinch installation.
+A project is an organizational unit for your database changes: containing configuration, migrations,
+hooks scripts, history, logs, etc. There can be many projects managed by a single cinch installation.
 
 ## Project Name
 
