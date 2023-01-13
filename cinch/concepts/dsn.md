@@ -4,8 +4,8 @@ title: Data Source Names
 parent: Concepts
 grand_parent: Cinch
 nav_order: 1
-git_write_benefits: >- 
-    Write access allows creating the store.yml during create project, and adding a 
+git_write_benefits: >-
+    Write access allows creating the store.yml during create project, and adding a
     migration script stub. However, both can be created manually
 ---
 
@@ -19,17 +19,33 @@ git_write_benefits: >-
 {:toc}
 ----
 
-Cinch uses DSNs to represent connection strings for the filesystem, database and remote GIT repositories. The format
-used by cinch is always a valid URI.
+Cinch uses DSNs to represent connection strings for the [target]({% link cinch/preface.md %}) and history 
+databases and the migration store.
 
-The URI format was chosen to represent a DSN for several reasons:
-1. well-known and understood format
-2. simplicity - all values can be represented in a single string
-3. large library support - internally cinch uses `GuzzleHttp\Psr7\Uri`
+## Format
 
-## DSN Options
-All DSNs support options, which are encoded as URI query parameters. The below table lists the available
-options for all data sources. 
+The format used by cinch is space-separated list of parameters: as `name=value` pairs ignoring spaces around the `=` sign.
+Every DSN must contain a `driver` parameter.
+
+```bash
+driver=pgsql host=localhost port = 333
+```
+
+If a value contains a space, it must be single quoted. Within single quotes, backslash `\` and single quote `'` must be
+escaped: `'ex\\amp\'le'`. Values that are not quoted, are not escaped.
+
+The below demonstrates how single quotes are interrupted when they are the first and/or last character.
+
+```bash
+name = 'value'      # value
+name = 'value       # 'value
+name = value'       # value'
+name = '\'value\''  # 'value'
+```
+
+## Optional Parameters
+
+The below table lists the available parameters for all data sources.
 
 | name            | default | description                                |
 |-----------------|---------|--------------------------------------------|
@@ -43,25 +59,17 @@ options for all data sources.
 These options are ignored when used with a Filesystem DSN.
 
 ## Filesystem DSN
-A filesystem DSN uses a `file` scheme. Where ever a filesystem URI is expected, an absolute or relative pathname
-can be used in its place.
 
-### Format
-```bash
-# relative
-file://.              # same as .
-file://reports/pdf    # same as reports/pdf
-file:.                # omit authority - same as .
+`driver=fs`
 
-# absolute
-file:///home/andrew   # same as /home/andrew
-file:/home/andrew     # omit authority - same as /home/andrew
-```
+A filesystem DSN references an absolute or relative pathname.
 
 ## MySQL DSN
+
 The MySQL DSN uses a `mysql` scheme. The format is identical to [pgsql](#postgresql-dsn).
 
 ### Format
+
 ```bash
 mysql://user:password@host:port/dbname?charset=name
 ```
@@ -78,9 +86,11 @@ mysql://user:password@host:port/dbname?charset=name
 | charset  | utf8mb4                            |
 
 ## PostgreSQL DSN
+
 The PostgreSQL DSN uses a `pgsql` scheme. The format is identical to [mysql](#mysql-dsn).
 
 ### Format
+
 ```bash
 pgsql://user:password@host:port/dbname?charset=name&sslmode=mode&search_path=a,b,c
 ```
@@ -99,8 +109,9 @@ pgsql://user:password@host:port/dbname?charset=name&sslmode=mode&search_path=a,b
 | search_path | set by postgres                                                                                                                                                     |
 
 ## GitHub DSN
-The GitHub DSN uses a `github` scheme. You must use a [personal access token][github-pac]{:target="_blank"} 
-with at least repository read access. 
+
+The GitHub DSN uses a `github` scheme. You must use a [personal access token][github-pac]{:target="_blank"}
+with at least repository read access.
 
 {: .highlight }
 It is recommended to use GitHub's new fine-grained personal access tokens. However, "classic" tokens will also work.
@@ -108,6 +119,7 @@ It is recommended to use GitHub's new fine-grained personal access tokens. Howev
 Optionally, you can enable repository write access. {{ page.git_write_benefits }}.
 
 ### Format
+
 ```bash
 github:owner/repo/store_root?branch=branch&token=token
 ```
@@ -115,20 +127,22 @@ github:owner/repo/store_root?branch=branch&token=token
 * authority `://` is not supported, GitHub always uses `api.github.com:443`
 * `owner` is either GitHub username or organization <small>[required]</small>
 * `repo` is the name of the GitHub repository <small>[required]</small>
-* `store_root` is the path from the root of `repo` to the migration store root directory. If omitted, cinch uses 
-the root of `repo` as the migration store root directory.
-* `branch` option is the branch to use within `repo` <small>[required]</small> 
+* `store_root` is the path from the root of `repo` to the migration store root directory. If omitted, cinch uses
+  the root of `repo` as the migration store root directory.
+* `branch` option is the branch to use within `repo` <small>[required]</small>
 * `token` option is the personal access token. If omitted, the `CINCH_GITHUB_TOKEN` environment variable must be set.
 
 ## GitLab DSN
+
 The GitLab DSN uses a `gitlab` scheme. You must use a
-[personal access token][gitlab-pac]{:target="_blank"}, [group access token][gitlab-gat]{:target="_blank"}, or 
+[personal access token][gitlab-pac]{:target="_blank"}, [group access token][gitlab-gat]{:target="_blank"}, or
 [project access token][gitlab-prat]{:target="_blank"} with at least `read_api, read_repository` scopes.
 
-Optionally, you can enable `api` scope. {{ page.git_write_benefits }}. If `api` scope is 
+Optionally, you can enable `api` scope. {{ page.git_write_benefits }}. If `api` scope is
 enabled, no other scopes are required.
 
 ### Format
+
 ```bash
 # for gitlab.com (GitLab SaaS)
 gitlab:project_id/store_root?branch=branch&token=token
@@ -145,7 +159,6 @@ gitlab://host:port/project_id/store_root?branch=branch&token=token
 * `branch` option is the branch to use within project <small>[required]</small>
 * `token` option is the personal, group, or project access token. If omitted, the `CINCH_GITLAB_TOKEN` environment variable must be set.
 
-
 ## Azure DevOps DSN
 
 The Azure DevOps DSN uses a `azure` scheme. You must use a
@@ -157,6 +170,7 @@ Supports Azure DevOps Services (cloud), not Azure DevOps Server (on-premise).
 Optionally, you can enable `code write` access. {{ page.git_write_benefits }}.
 
 ### Format
+
 ```bash
 azure:organization/project/repo/store_root?branch=branch&token=token
 ```
@@ -171,8 +185,13 @@ azure:organization/project/repo/store_root?branch=branch&token=token
 * `token` option is the personal access token. If omitted, the `CINCH_AZURE_TOKEN` environment variable must be set.
 
 [github-pac]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+
 [gitlab-pac]: https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html
+
 [gitlab-gat]: https://docs.gitlab.com/ee/user/group/settings/group_access_tokens.html
+
 [gitlab-prat]: https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html
+
 [azure-pac]: https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows
+
 [sslmode]: https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-PARAMKEYWORDS

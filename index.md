@@ -14,20 +14,28 @@ getting started/
 Concepts/
 * Design diagram
 * Terminology
+* Data Source Name
+  * 
 * Project
   * Project name
-  * Lifecycle Hooks 
+  * Life Cycle Hooks 
     * Events
     * Handlers (exec or http)
     * Options
 * History
   * Deployments
   * Changes
-  * Schema Version
+  * schema, table_prefix
+  * schema version
+  * schema owner (auto_create_schema)
 * MigrationStore
   * Directory
   * Migration
+    * MigrationId - default vs custom 
     * Script
+      * sql scripts
+      * php scripts (diff between executing local and remote)
+    * Metadata: author, authored_at, description
     * Location
     * Commit Policies
   * Sorting

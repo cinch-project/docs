@@ -18,30 +18,26 @@ nav_order: 1
 ## Primary Goals
 
 * Support for SQL and PHP migrations
-* Easy to configure or integrate into PHP applications: a cinch
+* Easy to configure or integrate into PHP applications
 * 100% framework-agnostic
 * Store history in a database other than the target
 * Ability to source migrations directly from version control
-* Lifecycle hooks during a deployment: commit or revert
+* Lifecycle hooks during a deployment: `migrate` or `rollback`
 * CI/CD pipeline friendly
 * Team-oriented management
 
 ## Why Cinch?
-Cinch was created to fill a gap in the PHP community around database migration tools. Most 
-existing tools are bundled with frameworks and not designed for use outside their ecosystems. In addition, some of 
-them do not support pure SQL migration scripts. 
-
-### Microservices
-With the continued growth of microservices, heterogeneous software stacks are becoming more common: 
-one service uses NodeJS while another Python, Java, or PHP. Most of these stacks have "their" way of 
-doing things, including some kind of database migration system. 
-
-Cinch is framework and language-agnostic. SQL migrations allow it to be used across stacks: Python, Ruby, 
-Java, etc. This means a team managing a set of microservices, utilizing different stacks, can now use
-a single tool to manage their database changes.
+CInch began as a low-tech C program to perform database migrations, which was ported to PHP. There was a need for PHP 
+migrations scripts, ruling out Python or Java tools, in addition to SQL migration support. Although other PHP tools 
+exist, most are either bundled with a (unwanted) framework, far too simplistic or lack specific features. 
 
 ### Multiple Data Sources
-Most of these tools have a limited number of ways to source migrations: typically just the filesystem.
-This makes it difficult (or unnatural) to integrate into web applications or to deploy database
-migrations within a CI/CD pipeline. Cinch solves this by integrating with the most popular source control systems, 
-allowing migrations to be sourced from where they live.
+Many existing tools have a limited number of ways to source migrations: typically just the filesystem.
+This makes it difficult, and unnatural, to integrate into web applications or deploy within a pipeline. 
+Cinch solves this by integrating with the most popular version control systems, allowing migrations to be sourced 
+from where they (most commonly) live.
+
+## Influences
+Either through research or previous usage, many other tools influenced cinch: including but not limited to Flyway, 
+Liquibase, Phinx, Doctrine and Laravel. Concepts and features from all these tools, can be found within cinch. 
+However, cinch's approach differs from these tools.
