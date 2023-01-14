@@ -19,11 +19,6 @@ Cinch began as a simple C program to perform database migrations, which was port
 PHP migration scripts. Although other PHP tools exist, most are either bundled with a (unwanted) framework, 
 far too simplistic or lack specific features.
 
-Many existing tools have a limited number of ways to source migrations: typically just the filesystem.
-This makes it difficult, and unnatural, to integrate into web applications or deploy within a pipeline.
-Cinch solves this by integrating with the most popular version control systems, allowing migrations to be sourced
-from where they (most commonly) live.
-
 ## Primary Goals
 * Support for SQL and PHP migrations
 * Easy to configure or integrate into PHP applications
@@ -52,8 +47,12 @@ MySQL, MariaDB, PostgreSQL, SQL Server tested with GCP, AWS RDS, Amazon Aurora a
 work with other solutions based on these databases.
 
 ## Migration Store Support
-A migration store (change source) houses migration scripts that have been or should be migrated to the target database. 
-Cinch currently supports several popular version control systems.
+A migration store (change source) houses migration scripts that have been or should be migrated to the target database.
+
+Many existing tools have a limited number of ways to source migrations: typically just the filesystem.
+This makes it difficult, and unnatural, to integrate into web applications or deploy within a pipeline.
+Cinch solves this by integrating with the most popular version control systems, allowing migrations to be sourced
+from where they (most commonly) live.
 
 | database              | description                                                                                     |
 |-----------------------|-------------------------------------------------------------------------------------------------|
