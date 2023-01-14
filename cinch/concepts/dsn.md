@@ -19,7 +19,7 @@ git_write_benefits: >-
 {:toc}
 ----
 
-Cinch uses DSNs to represent connection strings for the [target]({% link cinch/preface.md %}) and history 
+Cinch uses DSNs to represent connection strings for the [target]({% link index.md %}) and history 
 databases and the migration store.
 
 ## Format

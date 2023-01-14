@@ -4,7 +4,7 @@ theme: just-the-docs
 color_scheme: light
 markdown: kramdown
 highlighter: none # disable, using highlight.js
-url: https://www.cinchsoft.io
+url: https://www.cinch.live
 
 # footer
 back_to_top: true
