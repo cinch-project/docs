@@ -19,7 +19,7 @@ Cinch began as a simple C program to perform database migrations, which was port
 PHP migration scripts. Although other PHP tools exist, most are either bundled with a (unwanted) framework, 
 far too simplistic or lack specific features.
 
-## Primary Goals
+### Primary Goals
 * Support for SQL and PHP migrations
 * Easy to configure or integrate into PHP applications
 * 100% framework-agnostic
