@@ -1,6 +1,5 @@
-# CinchSoft Site
+# Cinch Documentation
 
-The CinchSoft website is powered by GitHub Pages using Jekyll. This repository represented the entire
-website: including application like `cinch` and PHP packages like `cinchsoft/assert`.
+Cinch documentation is a Jekyll project served by GitHub Pages.
 
-* https://www.cinchsoft.io
+https://www.cinch.live
