@@ -25,7 +25,6 @@ Cinch solves this by integrating with the most popular version control systems, 
 from where they (most commonly) live.
 
 ## Primary Goals
-
 * Support for SQL and PHP migrations
 * Easy to configure or integrate into PHP applications
 * 100% framework-agnostic
@@ -72,6 +71,9 @@ Either through research or previous usage, many other tools influenced cinch: in
 [Laravel](https://laravel.com/docs/9.x/migrations){:target="_default"}. 
 Concepts and features from all these tools, can be found within cinch. However, cinch's approach to schema management 
 differs from these tools.
+
+
+
 
 {% comment %}
 getting started/
