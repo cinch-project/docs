@@ -3,8 +3,7 @@ title: Welcome
 layout: home
 nav_order: 1
 ---
-Cinch is a database migration system written in PHP, designed to be extendable, configurable and
-powerful, while maintaining simplicity. It's a cinch!
+Cinch is a database migration system, designed to be extendable and configurable while maintaining simplicity.
 {: .fs-6 .fw-300 }
 
 ## Table of contents
@@ -69,7 +68,7 @@ Either through research or previous usage, many other tools influenced cinch: in
 [Doctrine](https://www.doctrine-project.org/projects/migrations.html){:target="_default"} and 
 [Laravel](https://laravel.com/docs/9.x/migrations){:target="_default"}. 
 Concepts and features from all these tools, can be found within cinch. However, cinch's approach to schema management 
-differs from these tools.
+has it's own twist.
 
 
 
