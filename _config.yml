@@ -1,7 +1,7 @@
-title: Cinch
+title: <img width-"200" src="/logo/highres-name-web.png"/>
 description: Database migrations made simple.
 theme: just-the-docs
-color_scheme: light
+color_scheme: dark
 markdown: kramdown
 highlighter: none # disable, using highlight.js
 url: https://www.cinch.live
@@ -13,7 +13,7 @@ back_to_top_text: "Back to top"
 # header
 heading_anchors: true
 aux_links:
-    '<img src="/assets/images/github.png">':
+    '<img width=32 src="/assets/images/github.png">':
         - "https://github.com/cinchsoft"
 
 callouts_level: quiet # or loud
