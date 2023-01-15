@@ -14,7 +14,7 @@ back_to_top_text: "Back to top"
 heading_anchors: true
 aux_links:
     '<img width=32 src="/assets/images/github.png">':
-        - "https://github.com/cinchsoft"
+        - "https://github.com/cinch-project"
 
 callouts_level: quiet # or loud
 callouts:
