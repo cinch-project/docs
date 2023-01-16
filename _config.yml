@@ -1,4 +1,5 @@
-title: <img width-"200" src="/logo/highres-name-web.png"/>
+title: Home
+logo: "/logo/highres-name-web.png"
 description: Database migrations made simple.
 theme: just-the-docs
 color_scheme: dark
