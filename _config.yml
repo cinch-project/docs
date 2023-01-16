@@ -1,11 +1,13 @@
 title: Home
-logo: "/logo/highres-name-web.png"
+logo: "/assets/images/logo-highres-name-web.png"
 description: Database migrations made simple.
 theme: just-the-docs
 color_scheme: dark
 markdown: kramdown
 highlighter: none # disable, using highlight.js
 url: https://www.cinch.live
+exclude:
+    - logo
 
 # footer
 back_to_top: true

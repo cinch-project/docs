@@ -1,5 +1,5 @@
 ---
-title: Welcome
+title: Cinch
 layout: home
 nav_order: 1
 ---
