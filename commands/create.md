@@ -2,7 +2,6 @@
 layout: default
 title: Create
 parent: Commands
-grand_parent: Cinch
 nav_order: 2
 ---
 

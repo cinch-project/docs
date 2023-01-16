@@ -2,7 +2,6 @@
 layout: default
 title: Data Source Names
 parent: Concepts
-grand_parent: Cinch
 nav_order: 1
 git_write_benefits: >-
     Write access allows creating the store.yml during create project, and adding a
@@ -58,6 +57,7 @@ The below table lists the available parameters for all data sources.
 {: .note }
 These options are ignored when used with a Filesystem DSN.
 
+{% comment %}
 ## Filesystem DSN
 
 `driver=fs`
@@ -195,3 +195,5 @@ azure:organization/project/repo/store_root?branch=branch&token=token
 [azure-pac]: https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows
 
 [sslmode]: https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-PARAMKEYWORDS
+
+{% endcomment %}
