@@ -41,8 +41,8 @@ Below is a full list including minimum versions. All versions newer than the min
 | Azure SQL Database   | 12.0            | N/A              |
 | SQLite               | 3.9             | October 10, 2016 |
 
-{: .highlight}
-MySQL, MariaDB, PostgreSQL, SQL Server tested with GCP, AWS RDS, Amazon Aurora and Azure. It is very likely Cinch will
+{: .note}
+MySQL, MariaDB, PostgreSQL, SQL Server tested with GCP, AWS RDS, Amazon Aurora and Azure. It is very likely Cinch will 
 work with other solutions based on these databases.
 
 ## Migration Store Support
