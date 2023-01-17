@@ -30,7 +30,7 @@ be `command` and the second `project`.
 
 ```bash
 # cinch <command> <project>
-cinch commit sales
+cinch migrate sales
 ```
 
 ## Options

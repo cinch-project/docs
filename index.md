@@ -20,7 +20,7 @@ far too simplistic or lack specific features.
 
 ### Primary Goals
 * Support for SQL and PHP migrations
-* Easy to configure or integrate into PHP applications
+* Easy to configure and integrate into PHP applications
 * 100% framework-agnostic
 * Store history in a database other than the target
 * Ability to source migrations directly from version control
@@ -29,7 +29,8 @@ far too simplistic or lack specific features.
 * Team-oriented management
 
 ## Database Support
-Cinch can be used to manage a number of databases. These databases can be used for the migration target or history.
+Cinch can be used to manage a number of databases. These databases can be used for the cinch 
+[target]({% link concepts/target.md %}) or [history]({% link concepts/history.md %}).
 Below is a full list including minimum versions. All versions newer than the minimum are supported.
 
 | name                 | minimum version | release date     |
@@ -46,14 +47,14 @@ MySQL, MariaDB, PostgreSQL, SQL Server tested with GCP, AWS RDS, Amazon Aurora a
 work with other solutions based on these databases.
 
 ## Migration Store Support
-A migration store (change source) houses migration scripts that have been or should be migrated to the target database.
+A migration store (change source) houses migration scripts that should be, or have been, migrated to the target database.
 
 Many existing tools have a limited number of ways to source migrations: typically just the filesystem.
 This makes it difficult, and unnatural, to integrate into web applications or deploy within a pipeline.
 Cinch solves this by integrating with the most popular version control systems, allowing migrations to be sourced
 from where they (most commonly) live.
 
-| database              | description                                                                                     |
+| store                 | description                                                                                     |
 |-----------------------|-------------------------------------------------------------------------------------------------|
 | Filesystem            | use the local filesystem, which is the default for the cinch CLI                                |
 | GitHub                | use a branch within a GitHub repository                                                         |
@@ -67,8 +68,8 @@ Either through research or previous usage, many other tools influenced cinch: in
 [Phinx](https://phinx.org/){:target="_default"}, 
 [Doctrine](https://www.doctrine-project.org/projects/migrations.html){:target="_default"} and 
 [Laravel](https://laravel.com/docs/9.x/migrations){:target="_default"}. 
-Concepts and features from all these tools, can be found within cinch. However, cinch's approach to schema management 
-has it's own twist.
+Concepts and features from all these tools, can be found within cinch. However, cinch's approach to schema version 
+management has it's own twist.
 
 
 

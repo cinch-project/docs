@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Data Source Names
+title: Data Source Name
 parent: Concepts
 nav_order: 1
 git_write_benefits: >-
@@ -18,33 +18,73 @@ git_write_benefits: >-
 {:toc}
 ----
 
-Cinch uses DSNs to represent connection strings for the [target]({% link index.md %}) and history 
-databases and the migration store.
+Cinch uses data source names to represent connection strings for the [target]({% link concepts/target.md %}) database,
+[history]({% link concepts/history.md %}) database and the [migration store]({% link concepts/migration-store.md %}).
 
 ## Format
-
-The format used by cinch is space-separated list of parameters: as `name=value` pairs ignoring spaces around the `=` sign.
+The cinch DSN format is a space-separated list of parameters: `name=value` pairs ignoring spaces around the `=` sign.
 Every DSN must contain a `driver` parameter.
 
-```bash
+```text
 driver=pgsql host=localhost port = 333
 ```
 
 If a value contains a space, it must be single quoted. Within single quotes, backslash `\` and single quote `'` must be
-escaped: `'ex\\amp\'le'`. Values that are not quoted, are not escaped.
+escaped: `'ex\\amp\'le'`. 
 
-The below demonstrates how single quotes are interrupted when they are the first and/or last character.
+Values that are not quoted, are not escaped. A value is only considered quoted if it begins and ends with a single quote.
 
-```bash
+```text
 name = 'value'      # value
 name = 'value       # 'value
 name = value'       # value'
 name = '\'value\''  # 'value'
 ```
 
+## Database Parameters
+Database DSNs are used by the [target]({% link concepts/target.md %}) and [history]({% link concepts/history.md %}) databases.
+Below is a list of all database parameters, along with their database-specific defaults:
+
+| name            | MySQL/MariaDB | PostgreSQL | Azure DB/SQL Server | SQLite   |
+|-----------------|---------------|--|------------------|----------|
+| driver          | <span style="color:#FF595E">mysql</span> | <span style="color:#FF595E">pgsql</span> | <span style="color:#FF595E">mssql</span>            | <span style="color:#FF595E">sqlite</span>   |
+| user            | root          | postgres | sa            | <span style="color:gray">_n/a_</span>      |
+| password        | <span style="color:gray">_empty_</span>  | <span style="color:gray">_empty_</span> | <span style="color:gray">_empty_</span>      | <span style="color:gray">_n/a_</span>      |
+| host        | 127.0.0.1     | 127.0.0.1 | 127.0.0.1        | <span style="color:gray">_n/a_</span>      |
+| port            | 3306          | 5432 | 1443              | <span style="color:gray">_n/a_</span>      |
+| dbname[^1]          | <span style="color:#FF595E">_required_</span>      | <span style="color:#FF595E">_required_</span> | <span style="color:#FF595E">_required_</span>         | <span style="color:#FF595E">_required path_</span>      |
+| charset         | utf8mb4       | UTF8 | UTF8             | <span style="color:gray">_n/a_</span>      |
+| search_path[^2] | <span style="color:gray">_n/a_</span>           | <span style="color:gray">_empty_</span> | <span style="color:gray">_n/a_</span>              | <span style="color:gray">_n/a_</span>      |
+| sslmode[^3]     | <span style="color:gray">_n/a_</span>           | prefer | <span style="color:gray">_n/a_</span>              | <span style="color:gray">_n/a_</span>      |
+
+All [optional parameters](#optional-parameters) are supported.
+
+[^1]: DB DSN `dbname`: database name or path to sqlite database file
+[^2]: DB DSN `search_path`: comma-separated list of postgres schemas: such as `billing,account,user`
+[^3]: DB DSN `sslmode`: disable, allow, prefer, require, verify-ca, verify-full - see [PostgreSQL parameters](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-PARAMKEYWORDS){:target="_blank"} for details
+
+## Migration Store Parameters
+All migration store DSNs use the below parameters. The `token` parameter defaults to an environment variable. 
+
+| name       | description                                                                    | Filesystem                                    | GitHub                                        | GitLab                                        | Azure                                         |
+|------------|--------------------------------------------------------------------------------|-----------------------------------------------|-----------------------------------------------|-----------------------------------------------|-----------------------------------------------|
+| driver     | name of driver                                                                 | <span style="color:#FF595E">fs</span>         | <span style="color:#FF595E">github</span>     | <span style="color:#FF595E">gitlab</span>     | <span style="color:#FF595E">azure</span>      |
+| store_dir  | relative/absolute path for filesystem, relative to repo root for git providers | <span style="color:#FF595E">_required_</span> | <span style="color:#FF595E">_required_</span> | <span style="color:#FF595E">_required_</span> | <span style="color:#FF595E">_required_</span> |
+| owner      | github user or organization name                                               | <span style="color:gray">_n/a_</span>         | <span style="color:#FF595E">_required_</span> | <span style="color:gray">_n/a_</span>         | <span style="color:gray">_n/a_</span>         |
+| project_id | located at the top of gitlab project page                                      | <span style="color:gray">_n/a_</span>         | <span style="color:gray">_n/a_</span>         | <span style="color:#FF595E">_required_</span> | <span style="color:gray">_n/a_</span>         |
+| org        | azure devops organization name                                                 | <span style="color:gray">_n/a_</span>         | <span style="color:gray">_n/a_</span>         | <span style="color:gray">_n/a_</span>         | <span style="color:#FF595E">_required_</span> |
+| project    | azure devops project name                                                      | <span style="color:gray">_n/a_</span>         | <span style="color:gray">_n/a_</span>         | <span style="color:gray">_n/a_</span>         | <span style="color:#FF595E">_required_</span> |
+| repo       | git repository name                                                            | <span style="color:gray">_n/a_</span>         | <span style="color:#FF595E">_required_</span> | <span style="color:gray">_n/a_</span>         | <span style="color:#FF595E">_required_</span> |
+| branch     | branch within repository                                                       | <span style="color:gray">_n/a_</span>         | <span style="color:#FF595E">_required_</span> | <span style="color:#FF595E">_required_</span> | <span style="color:#FF595E">_required_</span> |
+| token      | personal access token (read and write)                                         | <span style="color:gray">_n/a_</span>         | `CINCH_GITHUB_TOKEN`                          | `CINCH_GITLAB_TOKEN`                          | `CINCH_AZURE_TOKEN`                           |
+| host       | gitlab on-premise host/IP                                                      | <span style="color:gray">_n/a_</span>         | <span style="color:gray">_n/a_</span>         | gitlab.com                                    | <span style="color:gray">_n/a_</span>         |
+| port       | gitlab on-premise port                                                         | <span style="color:gray">_n/a_</span>         | <span style="color:gray">_n/a_</span>         | 443                                           | <span style="color:gray">_n/a_</span>         |
+
+All [optional parameters](#optional-parameters) are supported.
+
 ## Optional Parameters
 
-The below table lists the available parameters for all data sources.
+The below table lists the optional parameters for all data sources.
 
 | name            | default | description                                |
 |-----------------|---------|--------------------------------------------|
@@ -55,7 +95,10 @@ The below table lists the available parameters for all data sources.
 | sslkey          | empty   | path to private key for client certificate |
 
 {: .note }
-These options are ignored when used with a Filesystem DSN.
+These parameters are ignored when used with a Filesystem or SQLite driver: `driver=fs` or `driver=sqlite`.
+
+
+
 
 {% comment %}
 ## Filesystem DSN

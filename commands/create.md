@@ -18,6 +18,7 @@ nav_order: 2
 The `create` command creates a new project. This includes creating the project configuration, migration store and 
 history. A project is required before being able to manage a database target.
 
+{% comment %}
 ## Usage
 ```bash
 cinch create <project> <target_uri> [options]
@@ -32,3 +33,5 @@ All arguments are required.
 | target_uri | The URI of the target database.                                                                                                                                                                            |
 
 [^name-len]: Each natively supports 6 more bytes or characters, but the cinch CLI adds a `cinch_` prefix to the history schema name.
+
+{% endcomment %}
