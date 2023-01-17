@@ -3,9 +3,12 @@ layout: default
 title: Data Source Name
 parent: Concepts
 nav_order: 1
+
+required: <span style="color:#FF595E">*</span>
 git_write_benefits: >-
     Write access allows creating the store.yml during create project, and adding a
     migration script stub. However, both can be created manually
+required_token: "The `token` is a required value: either the parameter or environment variable must be set."
 ---
 
 # Data Source Names (DSN)
@@ -45,6 +48,19 @@ name = '\'value\''  # 'value'
 Database DSNs are used by the [target]({% link concepts/target.md %}) and [history]({% link concepts/history.md %}) databases.
 Below is a list of all database parameters, along with their database-specific defaults:
 
+### MySQL/MariaDB
+
+| name     | default    | description                  |
+|----------|------------|------------------------------|
+| driver   | mysql      | driver name, must be `mysql` |
+| user     | root       | user name                    |
+| password | (empty)    | user password                |
+| host     | 127.0.0.1  | hostname, IPv4, IPv6         |
+| port     | 3306       | TCP port number              |
+| dbname   | (required) | database name                |
+| charset  | utf8mb4    | client encoding              |
+
+
 | name            | MySQL/MariaDB | PostgreSQL | Azure DB/SQL Server | SQLite   |
 |-----------------|---------------|--|------------------|----------|
 | driver          | <span style="color:#FF595E">mysql</span> | <span style="color:#FF595E">pgsql</span> | <span style="color:#FF595E">mssql</span>            | <span style="color:#FF595E">sqlite</span>   |
@@ -64,23 +80,75 @@ All [optional parameters](#optional-parameters) are supported.
 [^3]: DB DSN `sslmode`: disable, allow, prefer, require, verify-ca, verify-full - see [PostgreSQL parameters](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-PARAMKEYWORDS){:target="_blank"} for details
 
 ## Migration Store Parameters
-All migration store DSNs use the below parameters. The `token` parameter defaults to an environment variable. 
+There are four different types (drivers) of migration stores. All require `driver` and `store_dir` parameters.
 
-| name       | description                                                                    | Filesystem                                    | GitHub                                        | GitLab                                        | Azure                                         |
-|------------|--------------------------------------------------------------------------------|-----------------------------------------------|-----------------------------------------------|-----------------------------------------------|-----------------------------------------------|
-| driver     | name of driver                                                                 | <span style="color:#FF595E">fs</span>         | <span style="color:#FF595E">github</span>     | <span style="color:#FF595E">gitlab</span>     | <span style="color:#FF595E">azure</span>      |
-| store_dir  | relative/absolute path for filesystem, relative to repo root for git providers | <span style="color:#FF595E">_required_</span> | <span style="color:#FF595E">_required_</span> | <span style="color:#FF595E">_required_</span> | <span style="color:#FF595E">_required_</span> |
-| owner      | github user or organization name                                               | <span style="color:gray">_n/a_</span>         | <span style="color:#FF595E">_required_</span> | <span style="color:gray">_n/a_</span>         | <span style="color:gray">_n/a_</span>         |
-| project_id | located at the top of gitlab project page                                      | <span style="color:gray">_n/a_</span>         | <span style="color:gray">_n/a_</span>         | <span style="color:#FF595E">_required_</span> | <span style="color:gray">_n/a_</span>         |
-| org        | azure devops organization name                                                 | <span style="color:gray">_n/a_</span>         | <span style="color:gray">_n/a_</span>         | <span style="color:gray">_n/a_</span>         | <span style="color:#FF595E">_required_</span> |
-| project    | azure devops project name                                                      | <span style="color:gray">_n/a_</span>         | <span style="color:gray">_n/a_</span>         | <span style="color:gray">_n/a_</span>         | <span style="color:#FF595E">_required_</span> |
-| repo       | git repository name                                                            | <span style="color:gray">_n/a_</span>         | <span style="color:#FF595E">_required_</span> | <span style="color:gray">_n/a_</span>         | <span style="color:#FF595E">_required_</span> |
-| branch     | branch within repository                                                       | <span style="color:gray">_n/a_</span>         | <span style="color:#FF595E">_required_</span> | <span style="color:#FF595E">_required_</span> | <span style="color:#FF595E">_required_</span> |
-| token      | personal access token (read and write)                                         | <span style="color:gray">_n/a_</span>         | `CINCH_GITHUB_TOKEN`                          | `CINCH_GITLAB_TOKEN`                          | `CINCH_AZURE_TOKEN`                           |
-| host       | gitlab on-premise host/IP                                                      | <span style="color:gray">_n/a_</span>         | <span style="color:gray">_n/a_</span>         | gitlab.com                                    | <span style="color:gray">_n/a_</span>         |
-| port       | gitlab on-premise port                                                         | <span style="color:gray">_n/a_</span>         | <span style="color:gray">_n/a_</span>         | 443                                           | <span style="color:gray">_n/a_</span>         |
+The three Git stores, GitHub, GitLab, Azure DevOps, also require `branch` and `token`. It is highly recommended
+that a dedicated repo, branch or `store_dir` be used for Git stores. 
+
+### Filesystem
+The filesystem store provides simplicity and is great for development. 
+
+| name      | required | description                                                |
+|-----------|----------|------------------------------------------------------------|
+| driver    | yes      | driver name, must be `fs`                                  |
+| store_dir | yes      | store root path: absolute or relative to project directory |
+
+Relative paths: if the project directory is `/home/foo/projects/sales`, and store_dir is `my-store`, then the store_dir would
+be `/home/foo/projects/sales/my-store`. The `store_dir` can be set to `.`.
+
+### GitHub
+The default for the `token` parameter is the `CINCH_GITHUB_TOKEN` environment variable. {{ page.required_token }}
+
+| name      | required | description                                                                               |
+|-----------|----------|-------------------------------------------------------------------------------------------|
+| driver    | yes      | driver name, must be `github`                                                             |
+| store_dir | yes      | relative path to the root of the repository                                               |
+| owner     | yes      | user or organization name                                                                 |
+| repo      | yes      | repository name                                                                           |
+| branch    | yes      | branch name within repository                                                             |
+| token     | yes      | [personal access token][github-pac]{:target="_blank"} with `repository` read/write access |
 
 All [optional parameters](#optional-parameters) are supported.
+
+[github-pac]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+
+### GitLab
+The default for the `token` parameter is the `CINCH_GITLAB_TOKEN` environment variable. {{ page.required_token }}
+
+| name       | required | description                                                                   |
+|------------|----------|-------------------------------------------------------------------------------|
+| driver     | yes      | driver name, must be `gitlab`                                                 |
+| store_dir  | yes      | relative path to the root of the repository                                   |
+| project_id | yes      | located at the top of gitlab project page                                     |
+| branch     | yes      | branch name within repository                                                 |
+| token      | yes      | [personal access token][gitlab-pac]{:target="_blank"} with `api` scope access |
+| host       | no       | on-premise installations, default is gitlab.com                               |
+| port       | no       | on-premise installations, default is 443                                      |
+
+The `token` can also be a [group][gitlab-gat]{:target="_blank"} or [project][gitlab-prat]{:target="_blank"} access token.
+
+All [optional parameters](#optional-parameters) are supported.
+
+[gitlab-pac]: https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html
+[gitlab-gat]: https://docs.gitlab.com/ee/user/group/settings/group_access_tokens.html
+[gitlab-prat]: https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html
+
+### Azure DevOps
+The default for the `token` parameter is the `CINCH_AZURE_TOKEN` environment variable. {{ page.required_token }}
+
+| name      | required | description                                                                        |
+|-----------|----------|------------------------------------------------------------------------------------|
+| driver    | yes      | driver name, must be `azure`                                                       |
+| store_dir | yes      | relative path to the root of the repository                                        |
+| org       | yes      | organization name                                                                  |
+| project   | yes      | project name                                                                       |
+| repo      | yes      | repository name                                                                    |
+| branch    | yes      | branch name within repository                                                      |
+| token     | yes      | [personal access token][azure-pac]{:target="_blank"} with `code` read/write access |
+
+All [optional parameters](#optional-parameters) are supported.
+
+[azure-pac]: https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows
 
 ## Optional Parameters
 
