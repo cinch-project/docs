@@ -130,7 +130,7 @@ The default for the `token` parameter is the `CINCH_GITHUB_TOKEN` environment va
 | owner     | yes      | user or organization name                                                                 |
 | repo      | yes      | repository name                                                                           |
 | branch    | yes      | branch name within repository                                                             |
-| token     | yes      | [personal access token][github-pac]{:target="_blank"} with `repository` read/write access |
+| token     | no       | [personal access token][github-pac]{:target="_blank"} with `repository` read/write access |
 
 All [optional parameters](#optional-parameters) are supported.
 
@@ -145,7 +145,7 @@ The default for the `token` parameter is the `CINCH_GITLAB_TOKEN` environment va
 | store_dir  | yes      | relative path to the root of the repository                                   |
 | project_id | yes      | located at the top of gitlab project page                                     |
 | branch     | yes      | branch name within repository                                                 |
-| token      | yes      | [personal access token][gitlab-pac]{:target="_blank"} with `api` scope access |
+| token      | no       | [personal access token][gitlab-pac]{:target="_blank"} with `api` scope access |
 | host       | no       | on-premise installations, default is gitlab.com                               |
 | port       | no       | on-premise installations, default is 443                                      |
 
@@ -168,7 +168,7 @@ The default for the `token` parameter is the `CINCH_AZURE_TOKEN` environment var
 | project   | yes      | project name                                                                       |
 | repo      | yes      | repository name                                                                    |
 | branch    | yes      | branch name within repository                                                      |
-| token     | yes      | [personal access token][azure-pac]{:target="_blank"} with `code` read/write access |
+| token     | no       | [personal access token][azure-pac]{:target="_blank"} with `code` read/write access |
 
 All [optional parameters](#optional-parameters) are supported.
 

@@ -25,6 +25,9 @@ cinch create <project> <target_dsn> [options]
 ```
 
 {% comment %}
+
+| -e, –env=NAME | The environment to use when executing the command. The default is `environments.default` from the project file.                                                                         |
+
 ## Usage
 ```bash
 cinch create <project> <target_uri> [options]
