@@ -23,7 +23,7 @@ are used to pass configuration and data to cinch.
 Arguments are the strings - separated by spaces - that come after the command name itself. They are
 ordered, and can be optional or required. They cannot begin with a `-`.
 
-### Required Arguments
+## Required Arguments
 
 The cinch CLI requires two arguments for every command, except `help` and `list`. The first argument must always
 be `command` and the second `project`.
@@ -39,7 +39,7 @@ Options are not ordered and are always optional. Every option comes in two flavo
 begin with a `-` followed by a single character. Long options begin with `--`. Options can have an optional
 or required value, separated by a space or `=`.
 
-### Global Options
+## Global Options
 
 Cinch contains a set of options that can be used with any command. 
 
