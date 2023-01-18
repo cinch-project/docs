@@ -182,9 +182,9 @@ The below table lists the optional parameters for all data sources.
 |-----------------|---------|--------------------------------------------|
 | connect_timeout | 10      | connect timeout in seconds                 |
 | timeout         | 10000   | request/query timeout in milliseconds      |
-| sslca           | empty   | path to certificate authority              |
-| sslcert         | empty   | path to client certificate                 |
-| sslkey          | empty   | path to private key for client certificate |
+| sslca           | (empty) | path to certificate authority              |
+| sslcert         | (empty) | path to client certificate                 |
+| sslkey          | (empty) | path to private key for client certificate |
 
 {: .note }
 These parameters are ignored when used with a Filesystem or SQLite driver: `driver=fs` or `driver=sqlite`.
