@@ -1,8 +1,9 @@
 ---
 layout: default
 title: create
-parent: Command Line Interface
-nav_order: 2
+parent: Commands
+nav_order: 1
+grand_parent: CLI
 ---
 
 # create

@@ -1,8 +1,9 @@
 ---
 layout: default
-title: CLI
-nav_order: 5
+title: Commands
+nav_order: 2
 has_children: true
+parent: CLI
 ---
 
 # Command Line Interface (CLI)
