@@ -46,9 +46,11 @@ name = '\'value\''  # 'value'
 
 ## Database Parameters
 Database DSNs are used by the [target]({% link concepts/target.md %}) and [history]({% link concepts/history.md %}) databases.
-Below is a list of all database parameters, along with their database-specific defaults:
+All databases support all [optional parameters](#optional-parameters).
 
 ### MySQL/MariaDB
+Both MySQL and MariaDB use the same parameters and driver name. Internally, cinch detects which platform it is 
+connected to and makes any necessary adjustments.
 
 | name     | default    | description                  |
 |----------|------------|------------------------------|
@@ -60,24 +62,41 @@ Below is a list of all database parameters, along with their database-specific d
 | dbname   | (required) | database name                |
 | charset  | utf8mb4    | client encoding              |
 
+### PostgreSQL
+PostgreSQL includes two unique parameters: `sslmode` and `search_path`. You can learn mode about 
+[sslmode here](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-PARAMKEYWORDS){:target="_blank"}.
 
-| name            | MySQL/MariaDB | PostgreSQL | Azure DB/SQL Server | SQLite   |
-|-----------------|---------------|--|------------------|----------|
-| driver          | <span style="color:#FF595E">mysql</span> | <span style="color:#FF595E">pgsql</span> | <span style="color:#FF595E">mssql</span>            | <span style="color:#FF595E">sqlite</span>   |
-| user            | root          | postgres | sa            | <span style="color:gray">_n/a_</span>      |
-| password        | <span style="color:gray">_empty_</span>  | <span style="color:gray">_empty_</span> | <span style="color:gray">_empty_</span>      | <span style="color:gray">_n/a_</span>      |
-| host        | 127.0.0.1     | 127.0.0.1 | 127.0.0.1        | <span style="color:gray">_n/a_</span>      |
-| port            | 3306          | 5432 | 1443              | <span style="color:gray">_n/a_</span>      |
-| dbname[^1]          | <span style="color:#FF595E">_required_</span>      | <span style="color:#FF595E">_required_</span> | <span style="color:#FF595E">_required_</span>         | <span style="color:#FF595E">_required path_</span>      |
-| charset         | utf8mb4       | UTF8 | UTF8             | <span style="color:gray">_n/a_</span>      |
-| search_path[^2] | <span style="color:gray">_n/a_</span>           | <span style="color:gray">_empty_</span> | <span style="color:gray">_n/a_</span>              | <span style="color:gray">_n/a_</span>      |
-| sslmode[^3]     | <span style="color:gray">_n/a_</span>           | prefer | <span style="color:gray">_n/a_</span>              | <span style="color:gray">_n/a_</span>      |
+| name        | default    | description                                                     |
+|-------------|------------|-----------------------------------------------------------------|
+| driver      | pgsql      | driver name, must be `pgsql`                                    |
+| user        | postgres   | user name                                                       |
+| password    | (empty)    | user password                                                   |
+| host        | 127.0.0.1  | hostname, IPv4, IPv6                                            |
+| port        | 5432       | TCP port number                                                 |
+| dbname      | (required) | database name                                                   |
+| charset     | UTF8       | client encoding                                                 |
+| search_path | (empty)    | comma-separated list of schemas                                 |
+| sslmode     | prefer     | can be: disable, allow, prefer, require, verify-ca, verify-full |
 
-All [optional parameters](#optional-parameters) are supported.
+### Azure DB/SQL Server
+SQL Server based databases are treated the same. Client encoding is always UTF8, there is no `charset` parameter.
 
-[^1]: DB DSN `dbname`: database name or path to sqlite database file
-[^2]: DB DSN `search_path`: comma-separated list of postgres schemas: such as `billing,account,user`
-[^3]: DB DSN `sslmode`: disable, allow, prefer, require, verify-ca, verify-full - see [PostgreSQL parameters](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-PARAMKEYWORDS){:target="_blank"} for details
+| name        | default    | description                                                     |
+|-------------|------------|-----------------------------------------------------------------|
+| driver      | mssql      | driver name, must be `mssql`                                    |
+| user        | sa         | user name                                                       |
+| password    | (empty)    | user password                                                   |
+| host        | 127.0.0.1  | hostname, IPv4, IPv6                                            |
+| port        | 1443       | TCP port number                                                 |
+| dbname      | (required) | database name                                                   |
+
+### SQLite
+SQLite does not require credentials or connection information, just the location of the database file.
+
+| name   | default    | description                   |
+|--------|------------|-------------------------------|
+| driver | sqlite     | driver name, must be `sqlite` |
+| dbname | (required) | path to database file         |
 
 ## Migration Store Parameters
 There are four different types (drivers) of migration stores. All require `driver` and `store_dir` parameters.
