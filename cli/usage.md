@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Usage
-parent: Commands
+parent: Command Line Interface
 nav_order: 1
 ---
 

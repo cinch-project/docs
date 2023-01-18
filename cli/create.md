@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Create
-parent: Commands
+title: create
+parent: Command Line Interface
 nav_order: 2
 ---
 
-# Create
+# create
 {: .no_toc }
 
 ## Table of contents
@@ -17,6 +17,11 @@ nav_order: 2
 
 The `create` command creates a new project. This includes creating the project configuration, migration store and 
 history. A project is required before being able to manage a database target.
+
+## Usage
+```bash
+cinch create <project> <target_dsn> [options]
+```
 
 {% comment %}
 ## Usage
