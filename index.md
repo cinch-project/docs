@@ -3,6 +3,10 @@ title: Home
 layout: home
 nav_order: 1
 ---
+
+{: .warning}
+Cinch is in development. It is not ready for production. This documentation is a work in progress.
+
 Cinch is a database migration system, designed to be extendable and configurable while maintaining simplicity.
 {: .fs-6 .fw-300 }
 
