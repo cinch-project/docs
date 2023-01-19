@@ -8,6 +8,5 @@ parent: CLI
 
 # Commands
 {: .no_toc }
-The cinch CLI comes with a set of commands to manage projects, migrate or rollback your database and
-report historical information.
+This section documents all commands offered by the CLI application.
 {: .fs-6 .fw-300 }

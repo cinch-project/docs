@@ -6,6 +6,5 @@ has_children: true
 ---
 
 # Command Line Interface (CLI)
-The cinch CLI comes with a set of commands to manage projects, migrate or rollback your database and
-report historical information.
+The CLI application provides the ability to manage projects and perform deployments from the command line.
 {: .fs-6 .fw-300 }
