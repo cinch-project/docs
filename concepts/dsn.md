@@ -3,12 +3,6 @@ layout: default
 title: Data Source Name
 parent: Concepts
 nav_order: 1
-
-required: <span style="color:#FF595E">*</span>
-git_write_benefits: >-
-    Write access allows creating the store.yml during create project, and adding a
-    migration script stub. However, both can be created manually
-required_token: "The `token` is a required value: either the parameter or environment variable must be set."
 ---
 
 # Data Source Names (DSN)
@@ -32,10 +26,10 @@ Every DSN must contain a `driver` parameter.
 driver=pgsql host=localhost port = 333
 ```
 
-If a value contains a space, it must be single quoted. Within single quotes, backslash `\` and single quote `'` must be
+If a value contains a space, it must be single quoted. Within single quotes, backslash and single quote must be
 escaped: `'ex\\amp\'le'`. 
 
-Values that are not quoted, are not escaped. A value is only considered quoted if it begins and ends with a single quote.
+A value is only considered quoted if it begins and ends with a single quote. 
 
 ```text
 name = 'value'      # value
