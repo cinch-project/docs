@@ -3,6 +3,7 @@ layout: default
 title: Data Source Name
 parent: Concepts
 nav_order: 1
+required_token: "The `token` is a required value: either the parameter or environment variable must be set."
 ---
 
 # Data Source Names (DSN)
