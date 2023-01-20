@@ -18,7 +18,7 @@ Migrates all eligible migration scripts
 ----
 
 The `migrate` command will find, [sort](/workflows/migrate.html#sorting) and migrate all 
-[eligible migration scripts](/concepts/migration-store.html#eligibility) to the [target](/concepts/target.html) database.
+[eligible migration scripts](/workflows/migrate.html#eligibility) to the [target](/concepts/target.html) database.
 
 ## Usage
 ```bash
