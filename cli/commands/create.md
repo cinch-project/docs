@@ -17,31 +17,31 @@ Creates a project
 {:toc}
 ----
 
-The `create` command creates a new project. This includes creating the project configuration, migration store and 
-history. A project is required before being able to manage a database target.
+The `create` command creates a new [project](/concepts/project.html). This includes the project configuration, 
+[migration store](/concepts/migration-store.html) and [history](/concepts/history.html). A project is required before 
+being able to manage a database [target](/concepts/target.html).
 
 ## Usage
-```bash
+```text
 cinch create <project> <target_dsn> [options]
 ```
+## Arguments
 
-{% comment %}
+| argument     | description         |
+|--------------|---------------------|
+| `project`    | project name        |
+| `target_dsn` | target database DSN |
 
-| -e, –env=NAME | The environment to use when executing the command. The default is `environments.default` from the project file.                                                                         |
+## Options
 
-## Usage
-```bash
-cinch create <project> <target_uri> [options]
-```
+| option                   | default                 | description                                                          |
+|--------------------------|-------------------------|----------------------------------------------------------------------|
+| `-H, --history=DSN`      | (target argument)       | History database DSN                                                 |
+| `-s, --schema=NAME`      | cinch_$project          | History schema name                                                  |
+| `--table-prefix=PREFIX`  | (empty)                 | History table name prefix                                            |
+| `--deploy-timeout=SECS`  | 10                      | Timeout seconds for a deploy lock                                    |
+| `-a, --auto-create=BOOL` | true                    | Auto-create history schema if it does not exist                      |
+| `-m, --store=DSN`        | "driver=fs store_dir=." | Migration store DSN                                                  |
+| `--env=ENV`              | (project argument)      | Sets the project's default [environment](/concepts/environment.html) |
 
-### Arguments
-All arguments are required.
-
-| argument   | description                                                                                                                                                                                                |
-|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| project    | The name of the project to create. Project names can contain any character between `U+0001..U+ffff` and must be UTF-8 encoded. MySQL is limited to 58 characters while PostgreSQL is 57 bytes [^name-len]. |
-| target_uri | The URI of the target database.                                                                                                                                                                            |
-
-[^name-len]: Each natively supports 6 more bytes or characters, but the cinch CLI adds a `cinch_` prefix to the history schema name.
-
-{% endcomment %}
+{{ site.global_options }}

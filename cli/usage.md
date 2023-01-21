@@ -39,10 +39,7 @@ Any arguments to the command itself, `migrate` above, always begin after the `<p
 
 Options are not ordered and are always optional. Every option comes in two flavors: short and long. Short options
 begin with a `-` followed by a single character. Long options begin with `--`. Options can have an optional
-or required value, separated by a space or `=`.
-
-{: .note}
-Short options can be stacked: `-pTw`
+or required value, separated by a space or `=`. Short options can be stacked: `-pTw`
 
 ## Global Options
 

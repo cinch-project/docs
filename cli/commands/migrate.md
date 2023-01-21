@@ -21,15 +21,15 @@ The `migrate` command will find, [sort](/workflows/migrate.html#sorting) and mig
 [eligible migration scripts](/workflows/migrate.html#eligibility) to the [target](/concepts/target.html) database.
 
 ## Usage
-```bash
+```text
 cinch migrate <project> [options]
 ```
 
 ## Arguments
 
-| argument  | description      |
-|-----------|------------------|
-| `project` | the project name |
+| argument  | description  |
+|-----------|--------------|
+| `project` | project name |
 
 ## Options
 
@@ -40,4 +40,4 @@ cinch migrate <project> [options]
 | `--dry-run`           | off                  | Performs all actions without deploying             |
 | `--env=ENV`           | environments.default | Sets the [environment](/concepts/environment.html) |
 
-All [global options](/cli/usage.html#global-options) are available.
+{{ site.global_options }}

@@ -36,5 +36,6 @@ callouts:
     warning:
         title: warning
         color: red
-#aux_links:
-#  Template Repository: https://github.com/just-the-docs/just-the-docs-template
+
+# site-wide variables
+global_options: All [global options](/cli/usage.html#global-options) are available.
