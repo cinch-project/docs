@@ -17,7 +17,7 @@ Removes an environment
 {:toc}
 ----
 
-The `migrate:remove` command removes an [environments](/concepts/environment.html) from a [project](/concepts/project.html).
+The `migrate:remove` command removes an [environment](/concepts/environment.html) from a [project](/concepts/project.html).
 
 ## Usage
 ```text

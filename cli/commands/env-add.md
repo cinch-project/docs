@@ -17,7 +17,7 @@ Adds an environment
 {:toc}
 ----
 
-The `migrate:add` command adds an [environments](/concepts/environment.html) to a [project](/concepts/project.html).
+The `migrate:add` command adds an [environment](/concepts/environment.html) to a [project](/concepts/project.html).
 
 ## Usage
 ```text

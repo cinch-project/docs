@@ -41,6 +41,6 @@ cinch create <project> <target_dsn> [options]
 | `--table-prefix=PREFIX`  | (empty)                 | History table name prefix                                            |
 | `--deploy-timeout=SECS`  | 10                      | Timeout seconds for a deploy lock                                    |
 | `-a, --auto-create=BOOL` | true                    | Auto-create history schema if it does not exist                      |
-| `-m, --store=DSN`        | "driver=fs store_dir=." | Migration store DSN                                                  |
+| `-S, --store=DSN`        | "driver=fs store_dir=." | Migration store DSN                                                  |
 | `--env=ENV`              | $project                | Sets the project's default [environment](/concepts/environment.html) |
 {% include global_options.md %}

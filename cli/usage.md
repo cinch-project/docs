@@ -45,6 +45,6 @@ or required value, separated by a space or `=`. Short options can be stacked: `-
 
 Cinch contains a set of options that can be used with any command.  
 
-| option                  | default                   | description                                                                                                                               |
-|-------------------------|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| option                  | default                   | description    |
+|-------------------------|---------------------------|----------------|
 {% include global_options.md %}
