@@ -37,5 +37,3 @@ callouts:
         title: warning
         color: red
 
-# site-wide variables
-global_options: All [global options](/cli/usage.html#global-options) are available.

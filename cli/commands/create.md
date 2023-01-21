@@ -36,12 +36,11 @@ cinch create <project> <target_dsn> [options]
 
 | option                   | default                 | description                                                          |
 |--------------------------|-------------------------|----------------------------------------------------------------------|
-| `-H, --history=DSN`      | (target argument)       | History database DSN                                                 |
+| `-H, --history=DSN`      | $target_dsn             | History database DSN                                                 |
 | `-s, --schema=NAME`      | cinch_$project          | History schema name                                                  |
 | `--table-prefix=PREFIX`  | (empty)                 | History table name prefix                                            |
 | `--deploy-timeout=SECS`  | 10                      | Timeout seconds for a deploy lock                                    |
 | `-a, --auto-create=BOOL` | true                    | Auto-create history schema if it does not exist                      |
 | `-m, --store=DSN`        | "driver=fs store_dir=." | Migration store DSN                                                  |
-| `--env=ENV`              | (project argument)      | Sets the project's default [environment](/concepts/environment.html) |
-
-{{ site.global_options }}
+| `--env=ENV`              | $project                | Sets the project's default [environment](/concepts/environment.html) |
+{% include global_options.md %}

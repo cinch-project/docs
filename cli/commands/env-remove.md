@@ -36,5 +36,4 @@ cinch env:remove <project> <name> [options]
 | option                     | default        | description                                |
 |----------------------------|----------------|--------------------------------------------|
 | `-D, --delete-history=DSN` | off            | Delete environment's history schema/tables |
-
-{{ site.global_options }}
+{% include global_options.md %}

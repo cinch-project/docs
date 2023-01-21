@@ -31,8 +31,14 @@ cinch env <project> [options]
 |-----------|--------------|
 | `project` | project name |
 
+## Options
+
+| options | default | description |
+|---------|---------|--|
+{% include global_options.md %}
+
 ## Example
-The project used for this example has two environments: `sales` and `dev`.
+The project used for this example has two environments: `sales` and `dev`. 
 
 <div style="cursor:pointer;">
   <img id="env-output" src="/assets/images/env-output.png" alt="env command output">
@@ -40,5 +46,3 @@ The project used for this example has two environments: `sales` and `dev`.
 <script>
 new Viewer(document.getElementById('env-output'), {navbar: false, toolbar: false, movable: false});
 </script>
-
-{{ site.global_options }}
