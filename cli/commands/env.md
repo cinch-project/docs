@@ -35,7 +35,7 @@ cinch env <project> [options]
 The project used for this example has two environments: `sales` and `dev`.
 
 <div style="cursor:pointer;">
-  <img id="env-output" src="/assets/images/env-output.png" alt="env output">
+  <img id="env-output" src="/assets/images/env-output.png" alt="env command output">
 </div>
 <script>
 new Viewer(document.getElementById('env-output'), {navbar: false, toolbar: false, movable: false});
