@@ -1,0 +1,7 @@
+<div>
+    <img class="photo"
+         id="{{ include.photo }}" src="/assets/images/{{ include.photo }}" alt="{{ include.alt }}">
+</div>
+<script>
+	new Viewer(document.getElementById('{{ include.photo }}'), {navbar: false, toolbar: false, movable: false});
+</script>

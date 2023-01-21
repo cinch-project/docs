@@ -39,5 +39,4 @@ cinch migrate <project> [options]
 | `--tag=TAG`           | version 7 UUID       | Tag assigned to deployment                         |
 | `--dry-run`           | off                  | Performs all actions without deploying             |
 | `--env=ENV`           | environments.default | Sets the [environment](/concepts/environment.html) |
-
-{{ site.global_options }}
+{% include global_options.md %}

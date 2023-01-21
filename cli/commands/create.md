@@ -44,3 +44,7 @@ cinch create <project> <target_dsn> [options]
 | `-S, --store=DSN`        | "driver=fs store_dir=." | Migration store DSN                                                  |
 | `--env=ENV`              | $project                | Sets the project's default [environment](/concepts/environment.html) |
 {% include global_options.md %}
+
+## Example
+
+{% include photo.html photo="create-output.png" alt="create command output" %}
