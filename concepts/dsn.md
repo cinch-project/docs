@@ -59,7 +59,7 @@ connected to and makes any necessary adjustments.
 All [optional parameters](#optional-parameters) are supported.
 
 ### PostgreSQL
-PostgreSQL includes two unique parameters: `sslmode` and `search_path`. You can learn mode about 
+PostgreSQL includes two unique parameters: `sslmode` and `search_path`. You can learn more about 
 [sslmode here](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-PARAMKEYWORDS){:target="_blank"}.
 
 | name        | default    | description                                                     |
