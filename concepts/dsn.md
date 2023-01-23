@@ -21,10 +21,10 @@ Cinch uses data source names to represent connection strings for the [target]({%
 
 ## Format
 The cinch DSN format is a space-separated list of parameters: `name=value` pairs ignoring spaces around the `=` sign.
-Every DSN must contain a `driver` parameter.
+Every DSN must contain a `adapter` parameter.
 
 ```text
-driver=pgsql host=localhost port = 333
+adapter=pgsql host=localhost port = 333
 ```
 
 If a value contains a space, it must be single quoted. Within single quotes, backslash and single quote must be
@@ -43,18 +43,18 @@ name = '\'value\''  # 'value'
 Database DSNs are used by the [target]({% link concepts/target.md %}) and [history]({% link concepts/history.md %}) databases.
 
 ### MySQL/MariaDB
-Both MySQL and MariaDB use the same parameters and driver name. Internally, cinch detects which platform it is 
+Both MySQL and MariaDB use the same parameters and adapter name. Internally, cinch detects which platform it is 
 connected to and makes any necessary adjustments.
 
-| name     | default    | description                  |
-|----------|------------|------------------------------|
-| driver   | mysql      | driver name, must be `mysql` |
-| user     | root       | user name                    |
-| password | (empty)    | user password                |
-| host     | 127.0.0.1  | hostname, IPv4, IPv6         |
-| port     | 3306       | TCP port number              |
-| dbname   | (required) | database name                |
-| charset  | utf8mb4    | client encoding              |
+| name     | default    | description                   |
+|----------|------------|-------------------------------|
+| adapter  | mysql      | adapter name, must be `mysql` |
+| user     | root       | user name                     |
+| password | (empty)    | user password                 |
+| host     | 127.0.0.1  | hostname, IPv4, IPv6          |
+| port     | 3306       | TCP port number               |
+| dbname   | (required) | database name                 |
+| charset  | utf8mb4    | client encoding               |
 
 All [optional parameters](#optional-parameters) are supported.
 
@@ -64,7 +64,7 @@ PostgreSQL includes two unique parameters: `sslmode` and `search_path`. You can 
 
 | name        | default    | description                                                     |
 |-------------|------------|-----------------------------------------------------------------|
-| driver      | pgsql      | driver name, must be `pgsql`                                    |
+| adapter     | pgsql      | adapter name, must be `pgsql`                                   |
 | user        | postgres   | user name                                                       |
 | password    | (empty)    | user password                                                   |
 | host        | 127.0.0.1  | hostname, IPv4, IPv6                                            |
@@ -79,27 +79,27 @@ All [optional parameters](#optional-parameters) are supported.
 ### Azure DB/SQL Server
 SQL Server based databases are treated the same. Client encoding is always UTF8, there is no `charset` parameter.
 
-| name        | default    | description                                                     |
-|-------------|------------|-----------------------------------------------------------------|
-| driver      | mssql      | driver name, must be `mssql`                                    |
-| user        | sa         | user name                                                       |
-| password    | (empty)    | user password                                                   |
-| host        | 127.0.0.1  | hostname, IPv4, IPv6                                            |
-| port        | 1443       | TCP port number                                                 |
-| dbname      | (required) | database name                                                   |
+| name     | default    | description                   |
+|----------|------------|-------------------------------|
+| adapter  | mssql      | adapter name, must be `mssql` |
+| user     | sa         | user name                     |
+| password | (empty)    | user password                 |
+| host     | 127.0.0.1  | hostname, IPv4, IPv6          |
+| port     | 1443       | TCP port number               |
+| dbname   | (required) | database name                 |
 
 All [optional parameters](#optional-parameters) are supported.
 
 ### SQLite
 SQLite does not require credentials or connection information, just the location of the database file.
 
-| name   | default    | description                   |
-|--------|------------|-------------------------------|
-| driver | sqlite     | driver name, must be `sqlite` |
-| dbname | (required) | path to database file         |
+| name    | default    | description                    |
+|---------|------------|--------------------------------|
+| adapter | sqlite     | adapter name, must be `sqlite` |
+| dbname  | (required) | path to database file          |
 
 ## Migration Store Parameters
-There are four different types (drivers) of migration stores. All require `driver` and `store_dir` parameters.
+There are four different adapters for migration stores. All require `adapter` and `store_dir` parameters.
 
 The three Git stores, GitHub, GitLab, Azure DevOps, also require `branch` and `token`. It is highly recommended
 that a dedicated repo, branch or `store_dir` be used for Git stores. 
@@ -109,7 +109,7 @@ The filesystem store provides simplicity and is great for development.
 
 | name      | required | description                                                |
 |-----------|----------|------------------------------------------------------------|
-| driver    | yes      | driver name, must be `fs`                                  |
+| adapter   | yes      | adapter name, must be `fs`                                 |
 | store_dir | yes      | store root path: absolute or relative to project directory |
 
 Relative paths: if the project directory is `/home/foo/projects/sales`, and store_dir is `my-store`, then the store_dir would
@@ -120,7 +120,7 @@ The default for the `token` parameter is the `CINCH_GITHUB_TOKEN` environment va
 
 | name      | required | description                                                                               |
 |-----------|----------|-------------------------------------------------------------------------------------------|
-| driver    | yes      | driver name, must be `github`                                                             |
+| adapter   | yes      | adapter name, must be `github`                                                            |
 | store_dir | yes      | relative path to the root of the repository                                               |
 | owner     | yes      | user or organization name                                                                 |
 | repo      | yes      | repository name                                                                           |
@@ -136,7 +136,7 @@ The default for the `token` parameter is the `CINCH_GITLAB_TOKEN` environment va
 
 | name       | required | description                                                                   |
 |------------|----------|-------------------------------------------------------------------------------|
-| driver     | yes      | driver name, must be `gitlab`                                                 |
+| adapter    | yes      | adapter name, must be `gitlab`                                                |
 | store_dir  | yes      | relative path to the root of the repository                                   |
 | project_id | yes      | located at the top of gitlab project page                                     |
 | branch     | yes      | branch name within repository                                                 |
@@ -157,7 +157,7 @@ The default for the `token` parameter is the `CINCH_AZURE_TOKEN` environment var
 
 | name      | required | description                                                                        |
 |-----------|----------|------------------------------------------------------------------------------------|
-| driver    | yes      | driver name, must be `azure`                                                       |
+| adapter   | yes      | adapter name, must be `azure`                                                      |
 | store_dir | yes      | relative path to the root of the repository                                        |
 | org       | yes      | organization name                                                                  |
 | project   | yes      | project name                                                                       |
@@ -182,4 +182,4 @@ The below table lists the optional parameters for all data sources.
 | sslkey          | (empty) | path to private key for client certificate |
 
 {: .note }
-These parameters are ignored when used with a Filesystem or SQLite driver: `driver=fs` or `driver=sqlite`.
+These parameters are ignored when used with a Filesystem or SQLite adapter: `adapter=fs` or `adapter=sqlite`.
