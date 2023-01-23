@@ -79,14 +79,14 @@ All [optional parameters](#optional-parameters) are supported.
 ### Azure DB/SQL Server
 SQL Server based databases are treated the same. Client encoding is always UTF8, there is no `charset` parameter.
 
-| name     | default    | description                   |
-|----------|------------|-------------------------------|
-| adapter  | mssql      | adapter name, must be `mssql` |
-| user     | sa         | user name                     |
-| password | (empty)    | user password                 |
-| host     | 127.0.0.1  | hostname, IPv4, IPv6          |
-| port     | 1443       | TCP port number               |
-| dbname   | (required) | database name                 |
+| name     | default    | description                    |
+|----------|------------|--------------------------------|
+| adapter  | sqlsrv     | adapter name, must be `sqlsrv` |
+| user     | sa         | user name                      |
+| password | (empty)    | user password                  |
+| host     | 127.0.0.1  | hostname, IPv4, IPv6           |
+| port     | 1443       | TCP port number                |
+| dbname   | (required) | database name                  |
 
 All [optional parameters](#optional-parameters) are supported.
 
