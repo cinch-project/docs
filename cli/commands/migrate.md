@@ -36,7 +36,7 @@ cinch migrate <project> [options]
 | option                | default              | description                                        |
 |-----------------------|----------------------|----------------------------------------------------|
 | `--deployer=DEPLOYER` | current user         | User or application performing the deployment      |
-| `--tag=TAG`           | version 7 UUID       | Tag assigned to deployment                         |
+| `--tag=TAG`           | ULID                 | Tag assigned to deployment                         |
 | `--dry-run`           | off                  | Performs all actions without deploying             |
 | `--env=ENV`           | environments.default | Sets the [environment](/concepts/environment.html) |
 {% include global_options.md %}

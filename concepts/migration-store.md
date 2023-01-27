@@ -15,6 +15,13 @@ nav_order: 6
 {:toc}
 ----
 
+A migration store houses all changes that have been, or should be, migrated to the [target](/concepts/target.html) database.
+
+
+## Migration Scripts
+
+## Store Config
+
 ## Store Path
 
 ## Migrate Policy
