@@ -42,6 +42,8 @@ Below is a full list including minimum versions. All versions newer than the min
 | MySQL                | 5.7             | October 21, 2015 |
 | MariaDB              | 10.2            | April 18, 2016   |
 | PostgreSQL           | 12.0            | October 3, 2019  |
+| IBM Db2 for LUW      | 11.5            | June 27, 2019    |
+| Oracle               | 12.2.0.2        | August, 2016     |
 | Microsoft SQL Server | 12.0            | March 18, 2014   |
 | Azure SQL Database   | 12.0            | N/A              |
 | SQLite               | 3.9             | October 10, 2016 |

@@ -76,6 +76,12 @@ PostgreSQL includes two unique parameters: `sslmode` and `search_path`. You can 
 
 All [optional parameters](#optional-parameters) are supported.
 
+### IBM Db2 for LUW
+In progress...
+
+### Oracle
+In progress...
+
 ### Azure DB/SQL Server
 SQL Server based databases are treated the same. Client encoding is always UTF8, there is no `charset` parameter.
 
