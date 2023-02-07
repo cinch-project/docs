@@ -1,4 +1,4 @@
-| `-w, -–working-dir=DIR` | current directory | The working directory to use when executing the command. Cinch searches for the [project](#required-arguments) directory within this DIR. |
+| `-w, -–working-dir=DIR` | current directory | The working directory to use when executing the command. Cinch searches for the project directory within this DIR. |
 | `-z, –-time-zone=TZ`    | system            | Sets the time zone for display. This option has no effect on the history or target database.                                              |
 | `-h, –-help`            |                   | Displays help for a command                                                                                                               |
 | `-q, --quiet`           | off               | Do not output any messages                                                                                                                |
