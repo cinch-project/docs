@@ -40,7 +40,7 @@ Below is a full list including minimum versions. All versions newer than the min
 | name                 | minimum version | release date     |
 |----------------------|-----------------|------------------|
 | MySQL                | 5.7             | October 21, 2015 |
-| MariaDB              | 10.2            | April 18, 2016   |
+| MariaDB              | 10.3            | April 16, 2017   |
 | PostgreSQL           | 12.0            | October 3, 2019  |
 | IBM Db2 for LUW      | 11.5            | June 27, 2019    |
 | Oracle               | 12.2.0.2        | August, 2016     |
